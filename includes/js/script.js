@@ -22,7 +22,26 @@ class Pawn extends Piece{
     }
 }
 
+class King extends Piece{
+    constructor(color){
+        super(color);
+    }
+
+    generatepiece(){
+        const piece = document.createElement('p');
+        piece.style.fontSize = '25px';
+        piece.textContent = this.color == 'white' ? '\u2654' : '\u265A';
+        return piece;
+    }
+}
+
+// White Pieces
 const whitepawn = new Pawn('white');
+const whiteking = new King('white');
+
+// Black Pieces
+const blackpawn = new Pawn('black');
+const blackking = new King('black');
 
 for (j=0; j < 8; j++){
     for (i=0; i < 8; i++){
@@ -45,6 +64,16 @@ for (j=0; j < 8; j++){
         if(j<2){
             if(j==1){
                 boardpiece.appendChild(whitepawn.generatepiece());
+            } else if(j==0){
+                switch(i){
+                    case 4:
+                        boardpiece.appendChild(whiteking.generatepiece());
+                        break;
+                }
+            }
+        } else if(j>5){
+            if(j==6){
+                boardpiece.appendChild(blackpawn.generatepiece());
             }
         }
 
